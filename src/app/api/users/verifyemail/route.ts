@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
 
     const user = await User.findOne({
       verifyToken: token,
-      verifyTokenExpiry: { gt: Date.now() },
+      verifyTokenExpiry: { $gt: Date.now() },
     });
     if (!user)
       return NextResponse.json({ error: "Invalid token" }, { status: 400 });
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
     user.isVerified = true;
     user.verifyToken = undefined;
-    user.verifyTokenExpiryj = undefined;
+    user.verifyTokenExpiry = undefined;
 
     await user.save();
 
