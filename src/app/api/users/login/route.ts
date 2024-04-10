@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
     const validPassword = bcryptjs.compareSync(password, user.password);
     if (!validPassword)
-      return NextResponse.json({ error: "Wrong Credentials" }, { status: 500 });
+      return NextResponse.json({ error: "Wrong Credentials" }, { status: 401 });
 
     const tokenData = {
       id: user._id,
@@ -33,11 +33,12 @@ export async function POST(request: NextRequest) {
     });
 
     const response = NextResponse.json({
-      message: "Loggen In success",
+      message: "Logged In success",
       success: true,
+      status: 200,
     });
 
-    response.cookies.set("token", token, {httpOnly: true});
+    response.cookies.set("token", token, { httpOnly: true });
     return response;
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });

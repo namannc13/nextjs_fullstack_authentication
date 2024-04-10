@@ -5,10 +5,9 @@ import { getDataFromToken } from "@/utils/getDataFromToken";
 
 connect();
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    //extract data from token
-    const userId = await getDataFromToken(request);
+    const userId: any = await getDataFromToken(request);
     const user = await User.findOne({ _id: userId }).select("-password");
     return NextResponse.json({
       message: "User found",
