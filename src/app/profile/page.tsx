@@ -4,6 +4,14 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -26,31 +34,29 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>Profile</h1>
-      <hr />
-      <p>Profile page</p>
-      <h2 className="p-1 rounded bg-green-500">
-        {data === "nothing" ? (
-          "Nothing"
-        ) : (
-          <Link href={`/profile/${data}`}>{data}</Link>
-        )}
-      </h2>
-      <hr />
-      <button
-        onClick={logout}
-        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Logout
-      </button>
-
-      <button
-        onClick={getUserDetails}
-        className="bg-green-800 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        GetUser Details
-      </button>
+    <div className="h-screen w-full flex items-center justify-center">
+      <Card className="mx-auto max-w-sm">
+        <CardHeader>
+          <CardTitle className="text-xl">Profile</CardTitle>
+          <CardDescription>
+            {data === "nothing" ? (
+              "Nothing"
+            ) : (
+              <Link href={`/profile/${data}`}>{data}</Link>
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-2">
+            <Button type="submit" className="w-full" onClick={logout}>
+              Logout
+            </Button>
+            <Button type="submit" className="w-full" onClick={getUserDetails}>
+              GetUser Details
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
