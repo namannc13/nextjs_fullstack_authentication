@@ -10,17 +10,7 @@ This project is a Next.js fullstack application that provides user authenticatio
 - Logout functionality
 
 ## Installation
-```bash
-npm install 
 
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 1. Install dependencies:
 ```
 npm install
